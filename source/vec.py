@@ -63,6 +63,20 @@ class Vector:
 
         return self.__add__(other)
 
+    def dot(self, other) -> float:
+        if not isinstance(other, Vector):
+            raise TypeError("they must be the same type")
+        
+        if len(other) != self._dim:
+            raise ValueError(f"dimension mismatch: {self._dim} vs {len(other)}")
+        
+        dotPrd = 0 
+
+        for idx in range(self._dim):
+            dotPrd += self._data[idx] * other[idx]
+        
+        return dotPrd
+
     def printVector(self):
         print(self._data)
 
@@ -71,5 +85,7 @@ if __name__ == "__main__":
     b = Vector((1,2,3,4,63))
     g = Vector((4,7,6,5,45))
     c = a + b + g
-    c.scalarMult(0)
-    c.printVector()
+    # c.scalarMult(0)
+    # b = 5 * a
+    print(a.dot(b))
+    b.printVector()
